@@ -34,7 +34,7 @@ app.post("/api/notes", (req, res) => {
       }
       var noteCombo = data.concat(newNote)
   
-      fs.writeFile("./db/db.json", JSON.stringify(noteCombo, null, 2), function (err, data) {
+      fs.writeFile("./db/db.json", JSON.stringify(noteCombo), function (err, data) {
         if (err) throw err;
         res.json(data);
       })
@@ -48,7 +48,7 @@ app.delete("/api/notes/:id", (req, res) => {
           if (err) throw err;
           noteData = JSON.parse(data)
           const noteId = noteData.filter(i => i.id !== selectedNote)
-          fs.writeFile("./db/db.json", JSON.stringify(noteId, null, 2), (err, data) => {
+          fs.writeFile("./db/db.json", JSON.stringify(noteId), (err, data) => {
             if (err) throw err;
             res.json(data);
           })
